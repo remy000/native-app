@@ -9,9 +9,11 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@react-native-community/netinfo": "^11.3.0",
     "@react-navigation/bottom-tabs": "^6.5.12",
     "@react-navigation/drawer": "^6.6.7",
     "@react-navigation/native": "^6.1.10",
+    "@react-navigation/stack": "^6.3.21",
     "expo": "~50.0.6",
     "expo-constants": "~15.4.5",
     "expo-linking": "~6.2.2",

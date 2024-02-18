@@ -1,8 +1,14 @@
 import React,{useState} from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } 
 	from 'react-native'; 
+import { useTheme } from '../hooks/ThemeContext';
 
 export default function Calculator() {
+	const {isDarkTheme}=useTheme();
+	const displayContainer=[
+		styles.container,
+		{backgroundColor:isDarkTheme?'#000000':'#051460'}
+	]
 const [displayValue, setDisplayValue] = useState('0'); 
 	const [operator, setOperator] = useState(null); 
 	const [firstValue, setFirstValue] = useState(''); 
@@ -47,7 +53,7 @@ const [displayValue, setDisplayValue] = useState('0');
   }
 
 	return ( 
-		<View style={styles.container}> 
+		<View style={displayContainer}> 
 			<View style={styles.displayContainer}> 
 				<Text style={styles.displayText}> 
 					{displayValue} 
@@ -203,7 +209,7 @@ const [displayValue, setDisplayValue] = useState('0');
 const styles = StyleSheet.create({ 
 	container: { 
 		flex: 1, 
-		backgroundColor: '#051460', 
+	
 		alignItems: 'center', 
 		justifyContent: 'center', 
     paddingBottom:2,

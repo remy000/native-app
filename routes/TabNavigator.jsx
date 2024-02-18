@@ -4,10 +4,12 @@ import Home from '../screens/Home';
 import About from '../screens/About';
 import Calculator from '../screens/Calculator';
 import { Ionicons } from '@expo/vector-icons';
+import { useTheme } from '../hooks/ThemeContext';
 
 const Tab=createBottomTabNavigator();
 
 export default function TabNavigator() {
+  const {isDarkTheme,toggleTheme,backgroundColor,textColor}=useTheme();
   return (
     <Tab.Navigator
     options={{
@@ -21,6 +23,12 @@ export default function TabNavigator() {
               <Ionicons name="home" color={color} size={size} />
             ),
             headerShown: false,
+            tabBarStyle:{
+              backgroundColor:backgroundColor
+            },
+            tabBarLabelStyle:{
+              color:textColor
+            }
           }}
         />
         <Tab.Screen name='calculator' component={Calculator}
@@ -29,6 +37,12 @@ export default function TabNavigator() {
               <Ionicons name="calculator" color={color} size={size} />
             ),
             headerShown: false,
+            tabBarStyle:{
+              backgroundColor:backgroundColor
+            },
+            tabBarLabelStyle:{
+              color:textColor
+            }
           }}
         />
         <Tab.Screen name='about' component={About}
@@ -37,6 +51,12 @@ export default function TabNavigator() {
               <Ionicons name="information-circle" color={color} size={size} />
             ),
             headerShown: false,
+            tabBarStyle:{
+              backgroundColor:backgroundColor
+            },
+            tabBarLabelStyle:{
+              color:textColor
+            }
           }}
         />
     </Tab.Navigator>

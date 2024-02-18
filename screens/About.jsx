@@ -1,11 +1,25 @@
 import React from 'react'
 import { Button, StyleSheet, Text, View } from 'react-native'
+import { useTheme } from '../hooks/ThemeContext';
 
 export default function About() {
+    const { isDarkTheme, backgroundColor, textColor } = useTheme();
+    const containerStyle = [
+        styles.container,
+        { backgroundColor: backgroundColor },
+      ];
+      const textStyle=[
+        styles.text,
+        {color:isDarkTheme?textColor:'#00008b'}
+      ]
+      const paragText=[
+        styles.paragraph,
+        {color:textColor}
+      ]
   return (
-    <View style={styles.container}>
-        <Text style={styles.text}>About our App!</Text>
-        <Text style={styles.paragraph}>
+    <View style={containerStyle}>
+        <Text style={textStyle}>About our App!</Text>
+        <Text style={paragText}>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet fugit dicta incidunt voluptatibus corporis accusantium quos sint officiis enim delectus asperiores magni, deserunt repellat praesentium neque voluptates consequuntur perferendis unde?
         </Text>
         <Button title='ReadMore'/>
