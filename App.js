@@ -5,6 +5,14 @@ import { ThemeProvider } from './hooks/ThemeContext';
 import NetInfo from '@react-native-community/netinfo'
 import { StyleSheet, View,Text } from 'react-native';
 import AuthNavigator from './routes/AuthNavigator';
+import 'expo-dev-client';
+
+
+
+
+
+
+
 export default function App() {
   const [isConnected, setIsConnected] = useState(false);
   const [showStatus, setShowStatus] = useState(false);

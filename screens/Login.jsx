@@ -1,32 +1,46 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {GoogleSignin,GoogleSigninButton} from '@react-native-google-signin/google-signin';
 
 const Login = ({navigation}) => {
-    const handleLogin = () => {
-        // Handle login functionality
-        // You can use libraries or APIs to implement the actual login process
-      };
-    
-      const handleSignUp = () => {
-        // Handle sign-up functionality
-        // You can use libraries or APIs to implement the actual sign-up process
-      };
-    
-      const handleGoogleSignIn = () => {
-        navigation.navigate('App')
-        // Handle Google sign-in functionality
-        // You can use libraries or APIs to implement the actual Google sign-in process
-      };
+  const [error,setError]=useState();
+  const [userInfo,setUserInfo]=useState(null);
+
+  useEffect(()=>{
+    GoogleSignin.configure({
+      webClientId:"321522277489-8d3oe4n76di4k9505vq0o9biu368a3fg.apps.googleusercontent.com",
+    });
+  },[]);
+
+  const signin=async()=>{
+    try {
+      await GoogleSignin.hasPlayServices();
+      const user=await GoogleSignin.signIn();
+      setUserInfo(user);
+      navigation.navigate('App');
+      
+    } catch (e) {
+      setError(e);
+      console.log(e);
+      
+    }
+  }
+
+
   return (
     <View style={styles.container}>
+      {
+        error&&<Text>{JSON.stringify(error)}</Text>
+      }
       <Text style={styles.title}>Welcome</Text>
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+      <TouchableOpacity style={styles.button} onPress={()=>{}}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.googleButton} onPress={handleGoogleSignIn}>
+      {/* <TouchableOpacity style={styles.googleButton} onPress={signin}>
         <Image source={require('../assets/google.jpg')} style={styles.googleImg}/>
         <Text style={styles.googleButtonText}>Sign in with Google</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
+      <GoogleSigninButton onPress={signin}/>
     </View>
   );
   
