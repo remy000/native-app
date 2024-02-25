@@ -6,6 +6,8 @@ import TabNavigator from './TabNavigator';
 import Calculator from '../screens/Calculator';
 import About from '../screens/About';
 import Home from '../screens/Home';
+import ImagePicker from '../screens/ImagePicker';
+import Contacts from '../screens/Contacts';
 import { useTheme } from '../hooks/ThemeContext';
 
 
@@ -83,6 +85,44 @@ export default function DrawerNavigator() {
               color:textColor
             }
         })}/>
+         <Drawer.Screen
+        name='Images'
+        component={ImagePicker}
+        options={({navigation})=>({
+            headerLeft:()=><CustomHeader navigation={navigation}/>,
+            drawerStyle:{
+              backgroundColor:backgroundColor,
+            },
+            drawerLabelStyle:{
+              color:textColor
+            },
+            headerStyle:{
+              backgroundColor:backgroundColor,
+            },
+            headerTitleStyle:{
+              color:textColor
+            },
+        })}
+        />
+         <Drawer.Screen
+        name='Contacts'
+        component={Contacts}
+        options={({navigation})=>({
+            headerLeft:()=><CustomHeader navigation={navigation}/>,
+            drawerStyle:{
+              backgroundColor:backgroundColor,
+            },
+            drawerLabelStyle:{
+              color:textColor
+            },
+            headerStyle:{
+              backgroundColor:backgroundColor,
+            },
+            headerTitleStyle:{
+              color:textColor
+            },
+        })}
+        />
         <Drawer.Screen
         name="ThemeToggle"
         options={{
